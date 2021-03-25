@@ -1,0 +1,12 @@
+{
+  "name": "ANLI",
+  "displayName": "ANLI",
+  "expo": {
+    "name": "ANLI",
+    "slug": "ANLI",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
