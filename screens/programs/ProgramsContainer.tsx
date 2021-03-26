@@ -2,6 +2,7 @@ import React from 'react';
 import {createStackNavigator} from "@react-navigation/stack";
 import Programs from "./Programs"
 import ProgramsContent from "./ProgramsContent";
+import {ProgramsInterface} from "./ProgramsInterface";
 
 const ProgramsContainer = () => {
     return(

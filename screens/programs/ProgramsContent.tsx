@@ -1,11 +1,13 @@
 import React from 'react';
 import {Image, Text, View} from "react-native";
+import {ProgramsInterface} from "./ProgramsInterface";
 
 const ProgramsContent = ({route}: any) => {
     const params: ProgramsInterface = route.params;
+
     console.log(params);
     const teeth = {
-        uri: params.uri,
+        uri: Image.resolveAssetSource(params.uri).uri,
         width: 300,
         heigth: 300
     }

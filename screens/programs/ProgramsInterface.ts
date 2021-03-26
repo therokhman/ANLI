@@ -1,4 +1,6 @@
-interface ProgramsInterface {
+import {ImageSourcePropType} from "react-native";
+
+export interface ProgramsInterface {
     text: string;
-    uri: string;
+    uri: ImageSourcePropType;
 }
