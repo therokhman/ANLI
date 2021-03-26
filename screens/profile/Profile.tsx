@@ -9,7 +9,7 @@ const Profile = (props: ProfileProps) => {
                 <MyButton fullWidth={true} text={'Журнал чистки зубов'} onPress={() => {props.navigation.navigate('journal')}} />
             </View>
             <View style={{width: '100%', marginTop: 10}}>
-                <MyButton fullWidth={true} text={'Заметки'} onPress={() => {props.navigation.navigate('home')}} />
+                <MyButton fullWidth={true} text={'Заметки'} onPress={() => {props.navigation.navigate('notes')}} />
             </View>
         </View>
     );
