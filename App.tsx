@@ -7,6 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import ProfileContainer from "./screens/profile/ProfileContainer";
 import ProgramsContainer from "./screens/programs/ProgramsContainer";
 import ModesContainer from "./screens/modes/ModesContainer";
+import Notifications from "./screens/Notifications"
 
 export default function App() {
     return (
@@ -17,6 +18,7 @@ export default function App() {
                 <Stack.Screen name="modesContainer" component={ModesContainer} options={{ headerShown: false }} />
                 <Stack.Screen name="hygiene" component={Hygiene} options={{ title: 'Гигиена полости рта', headerBackTitleVisible: false  }} />
                 <Stack.Screen name="profileContainer" component={ProfileContainer} options={{ headerShown: false }} />
+                <Stack.Screen name="notifications" component={Notifications} options={{ title: 'Мои уведомления' }} />
             </Stack.Navigator>
         </NavigationContainer>
     );
