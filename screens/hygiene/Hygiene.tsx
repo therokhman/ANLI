@@ -1,19 +1,39 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import MyButton from "../../MyButton";
+import {createMaterialTopTabNavigator} from "@react-navigation/material-top-tabs";
+import HygieneContent from "./HygieneContent";
 
 const Hygiene = (props: HygieneProps) => {
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>Home Screen</Text>
-            <MyButton text={'Test'} onPress={() => {props.navigation.navigate('home')}} />
-        </View>
+        <Tab.Navigator initialRouteName={'tongue'}>
+            <Tab.Screen name={'tongue'} component={HygieneContent} options={{title: 'Язык'}} initialParams = {data.tongue} />
+            <Tab.Screen name={'dentalFloss'} component={HygieneContent} options={{title: 'Зубная нить'}} initialParams = {data.dentalFloss} />
+            <Tab.Screen name={'rinsing'} component={HygieneContent} options={{title: 'Полоскание'}} initialParams = {data.rinsing} />
+        </Tab.Navigator>
     );
 }
 
+const Tab = createMaterialTopTabNavigator();
 
 interface HygieneProps {
     navigation: any
+}
+
+const data: {[key: string]: HygieneInterface} = {
+    tongue: {
+        title: '1 раз в день',
+        subtitle: 'Рекомендована ежедневная чистка',
+        text: 'В большинстве случаев неприятный запах изо рта (галитоз) связан с ферментативной деятельностью анаэробных микроорганизмов, которые колонизирует спинку языка благодаря неровностям рельефа, которые являются "ловушками" для микробов и пищевых субстратов для них. Используйте пластиковые скребки для языка, имеющие форму лопатки. Проводят по поверхности языка, с легким давлением продвигают к кончику.'
+    },
+    dentalFloss: {
+        title: '2 раза в день',
+        subtitle: 'Рекомендовано пользоваться 2 раза в день ежедневно.',
+        text: 'Для очищения контактных (боковых) поверхностей зубов используют зубные нити (флоссы), которые помогают разрушить мягкие зубные отложения и   вынести их из межзубного пространства. Нить вводят в межзубный промежуток, осторожно проталкивают через контактный пункт зубов, доводят до десны (“до щелчка”). Здесь нить С-образно изгибают по поверхности зуба, которую нужно очистить, и осторожно продвигают по направлению от десны.'
+    },
+    rinsing: {
+        title: '2 раза в день',
+        subtitle: 'Ежедневно пользуйтесь ополаскивателем 2 раза в день',
+        text: 'Полоскание с использованием различных жидких средств применяют для разрыхления зубного налёта до чистки зубов, для удаления из полости рта освобождённых частиц налёта после чистки зубов, а также для создания в полости рта депо антисептика и фторида.'
+    }
 }
 
 export default Hygiene;

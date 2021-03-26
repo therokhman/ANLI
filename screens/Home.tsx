@@ -7,7 +7,7 @@ const Home = (props: HomeProps) => {
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Text>Home Screen</Text>
             <View style={{ width: "90%", display: "flex", flexDirection: "row", alignItems: 'stretch', justifyContent: 'space-between' }}>
-                <MyButton text={'Мой \nПрофиль'} onPress={() => {props.navigation.navigate('profile')}} />
+                <MyButton text={'Мой \nПрофиль'} onPress={() => {props.navigation.navigate('profileContainer')}} />
                 <MyButton text={'Режимы'} onPress={() => {props.navigation.navigate('modes')}} />
                 <MyButton text={'Гигиена\n полости\n рта'} onPress={() => {props.navigation.navigate('hygiene')}} />
                 <MyButton text={'Спец \nпрограм-\nмы'} onPress={() => {props.navigation.navigate('programs')}} />
