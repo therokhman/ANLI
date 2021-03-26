@@ -3,7 +3,7 @@ import {createStackNavigator} from "@react-navigation/stack";
 import Profile from "./Profile";
 import Journal from "./Journal";
 
-const ProfileContainer = (props: any) => {
+const ProfileContainer = () => {
     return(
             <Stack.Navigator initialRouteName="profile">
                 <Stack.Screen name="profile" component={Profile} options={{ title: 'Мой профиль', headerBackTitleVisible: false }} />

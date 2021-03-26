@@ -3,7 +3,7 @@ import {createMaterialTopTabNavigator} from "@react-navigation/material-top-tabs
 import JournalContent from "./JournalContent";
 import {JournalMode} from "./JournalModeEnum";
 
-const Journal = (props: any) => {
+const Journal = () => {
     return (
         <Tab.Navigator initialRouteName={'tongue'}>
             <Tab.Screen name={JournalMode.DAY} component={JournalContent} options={{title: 'За день'}} initialParams = {{mode: JournalMode.DAY}} />

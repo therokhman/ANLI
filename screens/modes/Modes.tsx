@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import MyButton from "../../MyButton";
 
 const Modes = (props: ModesProps) => {
@@ -23,13 +23,13 @@ const Modes = (props: ModesProps) => {
                 дошкольникам - метод kai.</Text>
             <View style={{display: "flex", width: "100%"}}>
                 <View style={{width: '100%', marginTop: 15}}>
-                    <MyButton text={'Стандартный метод'} fullWidth={true} onPress={() => {props.navigation.navigate('standard')}} />
+                    <MyButton text={'СТАНДАРТНЫЙ МЕТОД'} fullWidth={true} onPress={() => {props.navigation.navigate('standard')}} />
                 </View>
                 <View style={{width: '100%', marginTop: 15}}>
-                    <MyButton text={'Метод Марталлера'} fullWidth={true} onPress={() => {props.navigation.navigate('martaller')}} />
+                    <MyButton text={'МЕТОД МАРТАЛЛЕРА'} fullWidth={true} onPress={() => {props.navigation.navigate('martaller')}} />
                 </View>
                 <View style={{width: '100%', marginTop: 15}}>
-                    <MyButton text={'Метод KAI'} fullWidth={true} onPress={() => {props.navigation.navigate('kai')}} />
+                    <MyButton text={'МЕТОД KAI'} fullWidth={true} onPress={() => {props.navigation.navigate('kai')}} />
                 </View>
             </View>
         </View>
