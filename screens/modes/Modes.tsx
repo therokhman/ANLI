@@ -4,9 +4,34 @@ import MyButton from "../../MyButton";
 
 const Modes = (props: ModesProps) => {
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>Home Screen</Text>
-            <MyButton text={'Test'} onPress={() => {props.navigation.navigate('home')}} />
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', paddingLeft: 20, paddingRight: 20 }}>
+            <Text style={{}}>Методы чистки зубов обеспечивают
+                последовательное более или менее
+                тщательное очищение всех поверхностей зубов. Предполагается сочетание
+                определённых видов движений щетки на той или иной поверхности, что связано с
+                особенностями доступа к поверхности, её
+                рельефом, соседством с другими
+                тканями и др. Эти движения требуют
+                соответствующего уровня координации,
+                поэтому способы чистки зубов
+                рассчитаны на определённые категории
+                пациентов.
+
+                Рекомендованы:
+                взрослым - стандартный метод,
+                школьником - метод Марталлера,
+                дошкольникам - метод kai.</Text>
+            <View style={{display: "flex", width: "100%"}}>
+                <View style={{width: '100%', marginTop: 15}}>
+                    <MyButton text={'Стандартный метод'} fullWidth={true} onPress={() => {props.navigation.navigate('standard')}} />
+                </View>
+                <View style={{width: '100%', marginTop: 15}}>
+                    <MyButton text={'Метод Марталлера'} fullWidth={true} onPress={() => {props.navigation.navigate('martaller')}} />
+                </View>
+                <View style={{width: '100%', marginTop: 15}}>
+                    <MyButton text={'Метод KAI'} fullWidth={true} onPress={() => {props.navigation.navigate('kai')}} />
+                </View>
+            </View>
         </View>
     );
 }
