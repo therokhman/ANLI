@@ -9,10 +9,10 @@ const HygieneContent = ({route}: any) => {
                 <Text style={{fontWeight: 'bold'}}>Частота: </Text>
                 {params?.title}
             </Text>
-            <Text>
+            <Text style={{textAlign: 'center', borderColor: 'black', borderWidth: 2, borderRadius: 10, marginTop: 10}}>
                 {params?.subtitle}
             </Text>
-            <Text style={{marginTop: 30}}>
+            <Text style={{textAlign: 'center', borderColor: 'black', borderWidth: 2, borderRadius: 10, marginTop: 30}}>
                 {params?.text}
             </Text>
         </View>

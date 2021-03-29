@@ -24,12 +24,14 @@ interface MyButtonProps {
 
 function getStyles(paddingX: number = 8, paddingY:number = 8, fullWidth: boolean = false):StyleProp<any> {
     let button: any = {
-        backgroundColor: 'rgb(33, 150, 243)',
+        backgroundColor: '#dcece9',
         paddingTop: paddingY,
         paddingBottom: paddingY,
         paddingLeft: paddingX,
         paddingRight: paddingX,
-        borderRadius: 3,
+        borderRadius: 10,
+        borderColor: '#2f5a4a',
+        borderStyle: 'solid',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
@@ -44,8 +46,9 @@ function getStyles(paddingX: number = 8, paddingY:number = 8, fullWidth: boolean
 
 const styles = StyleSheet.create({
     text: {
-        color: '#ffffff',
-        textAlign: 'center'
+        color: '#4d887d',
+        textAlign: 'center',
+        fontWeight: '700',
     }
 });
 
