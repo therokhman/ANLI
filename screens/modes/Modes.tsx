@@ -15,13 +15,13 @@ const Modes = (props: ModesProps) => {
             <Text style={{textAlign: 'center'}}>школьником - метод Марталлера,</Text>
             <Text style={{textAlign: 'center'}}>дошкольникам - метод kai.</Text>
             <View style={{display: "flex", width: "100%"}}>
-                <View style={{width: '100%', marginTop: 15}}>
+                <View style={{width: '100%', marginTop: 15, borderColor: 'black', borderWidth: 2, borderRadius: 10}}>
                     <MyButton text={'СТАНДАРТНЫЙ МЕТОД'} fullWidth={true} onPress={() => {props.navigation.navigate('standard')}} />
                 </View>
-                <View style={{width: '100%', marginTop: 15}}>
+                <View style={{width: '100%', marginTop: 15, borderColor: 'black', borderWidth: 2, borderRadius: 10}}>
                     <MyButton text={'МЕТОД МАРТАЛЛЕРА'} fullWidth={true} onPress={() => {props.navigation.navigate('martaller')}} />
                 </View>
-                <View style={{width: '100%', marginTop: 15}}>
+                <View style={{width: '100%', marginTop: 15, borderColor: 'black', borderWidth: 2, borderRadius: 10}}>
                     <MyButton text={'МЕТОД KAI'} fullWidth={true} onPress={() => {props.navigation.navigate('kai')}} />
                 </View>
             </View>

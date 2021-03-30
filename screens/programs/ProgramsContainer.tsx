@@ -7,11 +7,11 @@ import {ProgramsInterface} from "./ProgramsInterface";
 const ProgramsContainer = () => {
     return(
         <Stack.Navigator initialRouteName="programs">
-            <Stack.Screen name="programs" component={Programs} options={{ title: 'Специальные программы', headerBackTitleVisible: false }} />
-            <Stack.Screen name="teethwhite" component={ProgramsContent} initialParams = {data.teeth} options={{ title: 'Отбеливание зубов', headerBackTitleVisible: false }} />
-            <Stack.Screen name="gumprotect" component={ProgramsContent} initialParams = {data.gum} options={{ title: 'Защита десен', headerBackTitleVisible: false }} />
-            <Stack.Screen name="braces" component={ProgramsContent} initialParams = {data.braces} options={{ title: 'Уход за брекет-системой', headerBackTitleVisible: false }} />
-            <Stack.Screen name="fresh" component={ProgramsContent} initialParams = {data.fresh} options={{ title: 'Свежесть дыхания', headerBackTitleVisible: false }} />
+            <Stack.Screen name="programs" component={Programs} options={{ title: 'Специальные программы', headerBackTitleVisible: false, headerStyle: {backgroundColor: '#83aba4'} }} />
+            <Stack.Screen name="teethwhite" component={ProgramsContent} initialParams = {data.teeth} options={{ title: 'Отбеливание зубов', headerBackTitleVisible: false, headerStyle: {backgroundColor: '#83aba4'} }} />
+            <Stack.Screen name="gumprotect" component={ProgramsContent} initialParams = {data.gum} options={{ title: 'Защита десен', headerBackTitleVisible: false, headerStyle: {backgroundColor: '#83aba4'} }} />
+            <Stack.Screen name="braces" component={ProgramsContent} initialParams = {data.braces} options={{ title: 'Уход за брекет-системой', headerBackTitleVisible: false, headerStyle: {backgroundColor: '#83aba4'} }} />
+            <Stack.Screen name="fresh" component={ProgramsContent} initialParams = {data.fresh} options={{ title: 'Свежесть дыхания', headerBackTitleVisible: false, headerStyle: {backgroundColor: '#83aba4'} }} />
         </Stack.Navigator>
     )
 }

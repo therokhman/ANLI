@@ -6,10 +6,10 @@ import ModesContent from "./ModesContent";
 const ModesContainer = () => {
     return(
         <Stack.Navigator initialRouteName="modes">
-            <Stack.Screen name="modes" component={Modes} options={{ title: 'Режимы', headerBackTitleVisible: false }} />
-            <Stack.Screen name="standard" component={ModesContent} initialParams = {data.standard} options={{ title: 'Стандартный метод', headerBackTitleVisible: false }} />
-            <Stack.Screen name="martaller" component={ModesContent} initialParams = {data.martaller} options={{ title: 'Метод Марталера', headerBackTitleVisible: false }} />
-            <Stack.Screen name="kai" component={ModesContent} initialParams = {data.kai} options={{ title: 'Метод KAI', headerBackTitleVisible: false }} />
+            <Stack.Screen name="modes" component={Modes} options={{ title: 'Режимы', headerBackTitleVisible: false, headerStyle: {backgroundColor: '#83aba4'} }} />
+            <Stack.Screen name="standard" component={ModesContent} initialParams = {data.standard} options={{ title: 'Стандартный метод', headerBackTitleVisible: false, headerStyle: {backgroundColor: '#83aba4'} }} />
+            <Stack.Screen name="martaller" component={ModesContent} initialParams = {data.martaller} options={{ title: 'Метод Марталера', headerBackTitleVisible: false, headerStyle: {backgroundColor: '#83aba4'} }} />
+            <Stack.Screen name="kai" component={ModesContent} initialParams = {data.kai} options={{ title: 'Метод KAI', headerBackTitleVisible: false, headerStyle: {backgroundColor: '#83aba4'} }} />
         </Stack.Navigator>
     )
 }

@@ -12,11 +12,11 @@ const ProgramsContent = ({route}: any) => {
         heigth: 300
     }
     return (
-            <View style={{paddingLeft: 20, paddingRight: 20, paddingTop: 70}}>
-                    <Text style={{marginTop: 30}}>
+            <View style={{paddingLeft: 20, paddingRight: 20, paddingTop: 40}}>
+                    <Text style={{marginTop: 30, textAlign: 'center', fontStyle: 'italic', fontWeight: '500'}}>
                         {params?.text}
                     </Text>
-                    <Image source={teeth} style={{height: 300, marginTop: 50, marginBottom: 0, marginLeft: 'auto', marginRight: 'auto'}} />
+                    <Image source={teeth} style={{height: 300, marginTop: 40, marginBottom: 0, marginLeft: 'auto', marginRight: 'auto'}} />
             </View>
     );
 }

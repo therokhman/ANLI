@@ -4,7 +4,10 @@ import HygieneContent from "./HygieneContent";
 
 const Hygiene = (props: HygieneProps) => {
     return (
-        <Tab.Navigator initialRouteName={'tongue'}>
+        <Tab.Navigator initialRouteName={'tongue'} tabBarOptions={{
+            activeTintColor: '#020a08',
+            style: { backgroundColor: '#83aba4',},
+        }}>
             <Tab.Screen name={'tongue'} component={HygieneContent} options={{title: 'Язык'}} initialParams = {data.tongue} />
             <Tab.Screen name={'dentalFloss'} component={HygieneContent} options={{title: 'Зубная нить'}} initialParams = {data.dentalFloss} />
             <Tab.Screen name={'rinsing'} component={HygieneContent} options={{title: 'Полоскание'}} initialParams = {data.rinsing} />
