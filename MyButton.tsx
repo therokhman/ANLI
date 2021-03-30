@@ -24,7 +24,7 @@ interface MyButtonProps {
 
 function getStyles(paddingX: number = 8, paddingY:number = 8, fullWidth: boolean = false):StyleProp<any> {
     let button: any = {
-        backgroundColor: '#dcece9',
+        backgroundColor: '#83aba4',
         paddingTop: paddingY,
         paddingBottom: paddingY,
         paddingLeft: paddingX,
@@ -46,7 +46,7 @@ function getStyles(paddingX: number = 8, paddingY:number = 8, fullWidth: boolean
 
 const styles = StyleSheet.create({
     text: {
-        color: '#4d887d',
+        color: '#fdfdfd',
         textAlign: 'center',
         fontWeight: '700',
     }
