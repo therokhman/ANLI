@@ -12,6 +12,7 @@ import JournalModel from "./screens/profile/JournalModel";
 import {ActionsEnum} from "./screens/profile/ActionsEnum";
 import {JournalSettings} from "./screens/profile/JournalSettings";
 import {JournalContext} from "./JournalContext";
+import StartContainer from "./screens/start/StartContainer"
 
 export default function App() {
     const [model, setModel] = React.useState(new JournalModel({}, {[ActionsEnum.rinsing]: 3} as JournalSettings));
@@ -27,6 +28,7 @@ export default function App() {
                                   options={{title: 'Гигиена полости рта', headerBackTitleVisible: false, headerStyle: {backgroundColor: '#83aba4'}}}/>
                     <Stack.Screen name="profileContainer" component={ProfileContainer} options={{headerShown: false}}/>
                     <Stack.Screen name="notifications" component={Notifications} options={{title: 'Мои уведомления', headerBackTitleVisible: false, headerStyle: {backgroundColor: '#83aba4'}}}/>
+                    <Stack.Screen name="startContainer" component={StartContainer} options={{headerShown: false, headerBackTitleVisible: false, headerStyle: {backgroundColor: '#83aba4'}}}/>
                 </Stack.Navigator>
             </NavigationContainer>
         </JournalContext.Provider>

@@ -8,6 +8,9 @@ const Home = (props: HomeProps) => {
             <View style={{ width: "90%", display: "flex", alignItems: 'stretch', justifyContent: 'space-between' }}>
                 <MyButton text={'Мои уведомления'} onPress={() => {props.navigation.navigate('notifications')}} />
             </View>
+            <View style={{ width: "auto", display: "flex", alignItems: 'stretch', justifyContent: 'space-between' }}>
+                <MyButton text={'Начать \nЧистку'} onPress={() => {props.navigation.navigate('startContainer')}} />
+            </View>
             <View style={{ width: "90%", display: "flex", flexDirection: "row", alignItems: 'stretch', justifyContent: 'space-between' }}>
                 <MyButton text={'Мой \nПрофиль'} onPress={() => {props.navigation.navigate('profileContainer')}} />
                 <MyButton text={'Режимы'} onPress={() => {props.navigation.navigate('modesContainer')}} />
