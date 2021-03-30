@@ -19,14 +19,14 @@ export default function App() {
         <JournalContext.Provider value={{ model, setModel}}>
             <NavigationContainer>
                 <Stack.Navigator initialRouteName="home">
-                    <Stack.Screen name="home" component={Home} options={{title: 'Главная'}}/>
+                    <Stack.Screen name="home" component={Home} options={{title: 'Главная', headerStyle: {backgroundColor: '#83aba4'}}}/>
                     <Stack.Screen name="programsContainer" component={ProgramsContainer}
                                   options={{headerShown: false}}/>
                     <Stack.Screen name="modesContainer" component={ModesContainer} options={{headerShown: false}}/>
                     <Stack.Screen name="hygiene" component={Hygiene}
-                                  options={{title: 'Гигиена полости рта', headerBackTitleVisible: false}}/>
+                                  options={{title: 'Гигиена полости рта', headerBackTitleVisible: false, headerStyle: {backgroundColor: '#83aba4'}}}/>
                     <Stack.Screen name="profileContainer" component={ProfileContainer} options={{headerShown: false}}/>
-                    <Stack.Screen name="notifications" component={Notifications} options={{title: 'Мои уведомления'}}/>
+                    <Stack.Screen name="notifications" component={Notifications} options={{title: 'Мои уведомления', headerBackTitleVisible: false, headerStyle: {backgroundColor: '#83aba4'}}}/>
                 </Stack.Navigator>
             </NavigationContainer>
         </JournalContext.Provider>

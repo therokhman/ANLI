@@ -4,7 +4,10 @@ import HygieneContent from "./HygieneContent";
 
 const Hygiene = (props: HygieneProps) => {
     return (
-        <Tab.Navigator initialRouteName={'tongue'}>
+        <Tab.Navigator initialRouteName={'tongue'} tabBarOptions={{
+            activeTintColor: '#020a08',
+            style: { backgroundColor: '#83aba4',},
+        }}>
             <Tab.Screen name={'tongue'} component={HygieneContent} options={{title: 'Язык'}} initialParams = {data.tongue} />
             <Tab.Screen name={'dentalFloss'} component={HygieneContent} options={{title: 'Зубная нить'}} initialParams = {data.dentalFloss} />
             <Tab.Screen name={'rinsing'} component={HygieneContent} options={{title: 'Полоскание'}} initialParams = {data.rinsing} />
@@ -26,7 +29,7 @@ const data: {[key: string]: HygieneInterface} = {
     },
     dentalFloss: {
         title: '2 раза в день',
-        subtitle: 'Рекомендовано пользоваться 2 раза в день ежедневно.',
+        subtitle: 'Рекомендовано пользоваться 2 раза в день \n ежедневно.',
         text: 'Для очищения контактных (боковых) поверхностей зубов используют зубные нити (флоссы), которые помогают разрушить мягкие зубные отложения и   вынести их из межзубного пространства. Нить вводят в межзубный промежуток, осторожно проталкивают через контактный пункт зубов, доводят до десны (“до щелчка”). Здесь нить С-образно изгибают по поверхности зуба, которую нужно очистить, и осторожно продвигают по направлению от десны.'
     },
     rinsing: {

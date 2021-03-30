@@ -1,15 +1,15 @@
 import React from 'react';
 import {createStackNavigator} from "@react-navigation/stack";
 import Profile from "./Profile";
-import JournalModel from "./Journal";
+import Journal from "./Journal";
 import Notes from "./Notes";
 
 const ProfileContainer = () => {
     return(
             <Stack.Navigator initialRouteName="profile">
-                <Stack.Screen name="profile" component={Profile} options={{ title: 'Мой профиль', headerBackTitleVisible: false }} />
-                <Stack.Screen name="journal" component={JournalModel} options={{ title: 'Журнал чистки зубов', headerBackTitleVisible: false }} />
-                <Stack.Screen name="notes" component={Notes} options={{ title: 'Заметки', headerBackTitleVisible: false }} />
+                <Stack.Screen name="profile" component={Profile} options={{ title: 'Мой профиль', headerBackTitleVisible: false, headerStyle: {backgroundColor: '#83aba4'}}} />
+                <Stack.Screen name="journal" component={Journal} options={{ title: 'Журнал чистки зубов', headerBackTitleVisible: false, headerStyle: {backgroundColor: '#83aba4'}}} />
+                <Stack.Screen name="notes" component={Notes} options={{ title: 'Заметки', headerBackTitleVisible: false, headerStyle: {backgroundColor: '#83aba4'}}} />
             </Stack.Navigator>
     )
 }
