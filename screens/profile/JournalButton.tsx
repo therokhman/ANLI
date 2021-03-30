@@ -8,23 +8,31 @@ import {
     ImageSourcePropType,
     Image
 } from 'react-native';
+import {JournalMode} from "./JournalModeEnum";
+import JournalModel from "./JournalModel";
+import {ActionsEnum} from "./ActionsEnum";
+import {useJournal} from "../../JournalContext";
 
 const JournalButton = (props: JournalButtonProps) => {
-    console.log(props.image);
+    const {model, setModel} = useJournal();
     const img = {
         uri: Image.resolveAssetSource(props.image).uri,
         width: 30,
-        height: 30
+        height: 30,
     }
-
+    console.log(model);
     return (
         <TouchableOpacity
             style={styles.button}
-            onPress={props.onPress ? props.onPress : () => {}}
+            onPress={() => {model.add(props.action); setModel(model);}}
         >
             <Image source={img} style={{height: 30}} />
             <Text style={styles.text}>
-                {props.text}
+                {/*{props.text}*/}
+                {props.action}
+            </Text>
+            <Text style={styles.text}>
+                {model.currentValue(props.action, props.mode)}/{model.totalValue(props.action, props.mode)}
             </Text>
         </TouchableOpacity>
     );
@@ -32,7 +40,9 @@ const JournalButton = (props: JournalButtonProps) => {
 
 interface JournalButtonProps {
     text: string;
-    image: string;
+    image: ImageSourcePropType;
+    mode: JournalMode;
+    action: ActionsEnum;
     onPress?: (event: GestureResponderEvent) => void;
 }
 
@@ -46,7 +56,8 @@ const styles = StyleSheet.create({
         borderRadius: 3,
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        width: '30%'
     }
 });
 
