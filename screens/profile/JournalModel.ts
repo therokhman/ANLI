@@ -11,7 +11,7 @@ export default class JournalModel {
     constructor(actions: ActionsResponse, settings: JournalSettings) {
         Object.keys(actions).forEach((key) => {
             if (key in ActionsEnum) {
-                this.journal[key as ActionsEnum] = this.getDates(actions.key);
+                this.journal[key as ActionsEnum] = this.getDates(actions[key]);
             }
         });
         this.settings = settings;
@@ -19,9 +19,11 @@ export default class JournalModel {
 
     private getDates(dates: string[]): Date[] {
         let parsedDates: Date[] = [];
-        dates.forEach((date) => {
-            parsedDates.push(new Date(date))
-        });
+        if (dates) {
+            dates.forEach((date) => {
+                parsedDates.push(new Date(date))
+            });
+        }
         return parsedDates;
     }
 
@@ -100,10 +102,10 @@ export default class JournalModel {
     }
 
     public toString() {
-        return {
-            actions: JSON.stringify(this.journal),
-            settings: JSON.stringify(this.settings)
-        }
+        return JSON.stringify({
+            actions: this.journal,
+            settings: this.settings
+        })
     }
 
     public add(action: ActionsEnum) {

@@ -5,9 +5,44 @@ import {JournalMode} from "./JournalModeEnum";
 import JournalModel from "./JournalModel";
 import {ActionsEnum} from "./ActionsEnum";
 import {JournalSettings} from "./JournalSettings";
+import {Provider} from "mobx-react";
+
+import {types} from "mobx-state-tree"
+import DBService from "../../DBService";
+
+const RootStore = types.model({
+    modelData: types.string,
+}).actions(
+    self => ({
+        update(newModelData: string) {
+            self.modelData = newModelData;
+        }
+    })
+);
+
+const rootStore = RootStore.create( {
+    modelData: (new JournalModel({}, {[ActionsEnum.rinsing]: 3} as JournalSettings)).toString(),
+})
+
+function getStoreDefinition(): any {
+    let journalProps: any = {};
+    let settingsProps: any = {};
+    Object.keys(ActionsEnum).forEach(el => {
+        journalProps[el] = types.array(types.number);
+        settingsProps[el] = types.number;
+    })
+    return types.model({
+        modelData: types.model({
+            journal: types.model(journalProps),
+            settings: types.model(settingsProps)
+        }),
+    });
+}
 
 const Journal = () => {
+    // let dbService: DBService = new DBService();
     return (
+        <Provider rootStore={rootStore}>
         <Tab.Navigator initialRouteName={'tongue'} tabBarOptions={{
             activeTintColor: '#020a08',
             style: { backgroundColor: '#83aba4'},
@@ -21,7 +56,7 @@ const Journal = () => {
             <Tab.Screen name={JournalMode.WEEK} component={JournalContent} options={{title: 'За неделю'}} initialParams = {{mode: JournalMode.WEEK}} />
             <Tab.Screen name={JournalMode.MONTH} component={JournalContent} options={{title: 'За месяц'}} initialParams = {{mode: JournalMode.MONTH}} />
         </Tab.Navigator>
-
+        </Provider>
     );
 }
 
