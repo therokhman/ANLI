@@ -8,7 +8,6 @@ import {JournalSettings} from "./JournalSettings";
 import {Provider} from "mobx-react";
 
 import {types} from "mobx-state-tree"
-import DBService from "../../DBService";
 
 const RootStore = types.model({
     modelData: types.string,
@@ -40,7 +39,6 @@ function getStoreDefinition(): any {
 }
 
 const Journal = () => {
-    // let dbService: DBService = new DBService();
     return (
         <Provider rootStore={rootStore}>
         <Tab.Navigator initialRouteName={'tongue'} tabBarOptions={{
