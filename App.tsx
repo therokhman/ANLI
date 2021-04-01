@@ -1,5 +1,6 @@
 import 'react-native-gesture-handler';
-import React from 'react';
+import SplashScreen from 'react-native-splash-screen'
+import React, {useEffect} from 'react';
 import Home from "./screens/Home";
 import Hygiene from "./screens/hygiene/Hygiene";
 import {NavigationContainer} from '@react-navigation/native';
@@ -11,8 +12,10 @@ import Notifications from "./screens/Notifications"
 import StartContainer from "./screens/start/StartContainer"
 
 export default function App() {
+    // useEffect(() => {
+    //     SplashScreen.hide();
+    // });
     return (
-
             <NavigationContainer>
                 <Stack.Navigator initialRouteName="home">
                     <Stack.Screen name="home" component={Home} options={{title: 'Главная', headerStyle: {backgroundColor: '#83aba4'}}}/>

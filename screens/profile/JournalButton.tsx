@@ -14,13 +14,15 @@ class JournalButton extends React.Component<JournalButtonProps, {}> {
 
         this.img = {
             uri: Image.resolveAssetSource(props.image).uri,
-            width: 30,
-            height: 30,
+            width: props.width || 70,
+            height: props.height || 37,
         }
+
+        console.log(this.img);
     }
 
     render() {
-        // @ts-ignore
+        // @ts-ignores
         let {actions, settings} = JSON.parse(this.props.rootStore.modelData);
         let model = new JournalModel(actions, settings);
         let isEnabled = this.props.mode === JournalMode.DAY
@@ -37,10 +39,10 @@ class JournalButton extends React.Component<JournalButtonProps, {}> {
                     }
                 }}
             >
-                <Image source={this.img} style={{height: 30}}/>
+                <Image source={this.img} style={{height: 37}}/>
                 <Text style={styles.text}>
-                    {/*{props.text}*/}
-                    {this.props.action}
+                    {this.props.text}
+                    {/*{this.props.action}*/}
                 </Text>
                 <Text style={styles.counter}>
                     {model.currentValue(this.props.action, this.props.mode)}/{model.totalValue(this.props.action, this.props.mode)}
@@ -82,6 +84,8 @@ class JournalButton extends React.Component<JournalButtonProps, {}> {
 interface JournalButtonProps {
     text: string;
     image: ImageSourcePropType;
+    height?: number,
+    width?: number,
     mode: JournalMode;
     action: ActionsEnum;
     onPress?: (event: GestureResponderEvent) => void;

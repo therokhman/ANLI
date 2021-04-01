@@ -1,5 +1,8 @@
 import React, {useState} from 'react';
-import {TouchableOpacity, Text, StyleSheet, View} from "react-native";
+import {TouchableOpacity, Text, StyleSheet, View, Image} from "react-native";
+import { ProgressBar, Colors } from 'react-native-paper';
+import {StartInterface} from "./StartInterface";
+
 
 const RadioButton = ( props: StartProps ) => {
     return (
@@ -16,6 +19,11 @@ const RadioButton = ( props: StartProps ) => {
 
 const StartContent = ({route}: any) => {
     const params: StartInterface = route.params;
+    const teeth = {
+        uri: Image.resolveAssetSource(params.uri).uri,
+        width: 225,
+        heigth: 225
+    }
     const [isLiked, setIsLiked] = useState([
         { id: 1, value: true, name: "Чистка верхней челюсти", selected: false },
         { id: 2, value: false, name: "Чистка нижней челюсти", selected: false }
@@ -40,7 +48,9 @@ const StartContent = ({route}: any) => {
                 </RadioButton>
             ))}
         </View>
-            <View style={{justifyContent: 'space-between', paddingLeft: 20, paddingRight: 20, paddingTop: 70}}>
+            <Image source={teeth} style={{height: 300, marginTop: 20, marginBottom: 20, marginLeft: 'auto', marginRight: 'auto'}} />
+            <ProgressBar progress={0.5} color={Colors.red800} style={{justifyContent: 'space-between', width: 'auto'}}/>
+            <View style={{justifyContent: 'space-between', paddingLeft: 20, paddingRight: 20, paddingTop: 30}}>
                 <Text style={{textAlign: 'center', fontWeight: 'bold'}}>{params.header}</Text>
                 <Text style={{
                     textAlign: 'center',
@@ -60,9 +70,7 @@ const styles = StyleSheet.create({
         marginHorizontal: "auto",
         maxWidth: 500,
         justifyContent: 'space-between',
-        paddingLeft: 20,
-        paddingRight: 20,
-        paddingTop: 70,
+        marginLeft: 80,
     },
     radioButtonContainer: {
         flexDirection: "row",
