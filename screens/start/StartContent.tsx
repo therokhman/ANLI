@@ -4,7 +4,7 @@ import { ProgressBar } from 'react-native-paper';
 import {StartInterface} from "./StartInterface";
 
 
-const RadioButton = ( props: StartProps ) => {
+const RadioButton = ( props: any ) => {
     return (
         <View style={styles.radioButtonContainer}>
             <TouchableOpacity onPress={props.onPress} style={styles.radioButton}>
@@ -17,11 +17,12 @@ const RadioButton = ( props: StartProps ) => {
     );
 };
 
-class StartContent extends Component<{ route: any }, any> {
+class StartContent extends Component<{ route: any, navigation: any }, any> {
     params: StartInterface = {} as StartInterface;
     teeth: any = {};
     onRadioBtnClick: any;
     timerId: any = null;
+    timeCodes: any;
 
     componentWillUnmount() {
         if (this.timerId !== null) {
@@ -31,83 +32,80 @@ class StartContent extends Component<{ route: any }, any> {
     }
 
     callback() {
-        if (this.state.count === 0) {
+        if (this.state.count === this.timeCodes[0]) {
             this.setState({
                 isLiked: [ { id: 1, value: true, name: "Чистка верхней челюсти", selected: true },
-                    { id: 2, value: false, name: "Чистка нижней челюсти", selected: false }]
-            });
-            this.setState({
+                    { id: 2, value: false, name: "Чистка нижней челюсти", selected: false }],
                 t1Color: 'red',
                 t2Color: 'black',
-                t3Color: 'black'
+                t3Color: 'black',
             });
         }
 
-        if (this.state.count === 12) {
+        if (this.state.count === this.timeCodes[1]) {
             this.setState({
                 isLiked: [ { id: 1, value: true, name: "Чистка верхней челюсти", selected: false },
-                    { id: 2, value: false, name: "Чистка нижней челюсти", selected: true }]
-            });
-            this.setState({
+                    { id: 2, value: false, name: "Чистка нижней челюсти", selected: true }],
                 t1Color: 'white',
                 t2Color: 'black',
                 t3Color: 'black'
             });
         }
 
-        if (this.state.count === 24) {
+        if (this.state.count === this.timeCodes[2]) {
             this.setState({
                 isLiked: [ { id: 1, value: true, name: "Чистка верхней челюсти", selected: true },
-                    { id: 2, value: false, name: "Чистка нижней челюсти", selected: false }]
-            });
-            this.setState({
+                    { id: 2, value: false, name: "Чистка нижней челюсти", selected: false }],
                 t1Color: 'black',
                 t2Color: 'red',
                 t3Color: 'black'
             });
+
         }
 
-        if (this.state.count === 32) {
+        if (this.state.count === this.timeCodes[3]) {
             this.setState({
                 isLiked: [ { id: 1, value: true, name: "Чистка верхней челюсти", selected: false },
-                    { id: 2, value: false, name: "Чистка нижней челюсти", selected: true }]
-            });
-            this.setState({
+                    { id: 2, value: false, name: "Чистка нижней челюсти", selected: true }],
                 t1Color: 'black',
                 t2Color: 'white',
                 t3Color: 'black'
             });
         }
 
-        if (this.state.count === 40) {
+        if (this.state.count === this.timeCodes[4]) {
             this.setState({
                 isLiked: [ { id: 1, value: true, name: "Чистка верхней челюсти", selected: true },
-                    { id: 2, value: false, name: "Чистка нижней челюсти", selected: false }]
-            });
-            this.setState({
+                    { id: 2, value: false, name: "Чистка нижней челюсти", selected: false }],
                 t1Color: 'black',
                 t2Color: 'black',
                 t3Color: 'red'
             });
+            if (this.timeCodes.length < 6) {
+                clearInterval(this.timerId);
+                this.timerId = null;
+                this.props.navigation.navigate(this.params.next);
+
+            }
+        }
+        if (this.timeCodes.length > 4) {
+            if (this.state.count === this.timeCodes[5]) {
+                this.setState({
+                    isLiked: [ { id: 1, value: true, name: "Чистка верхней челюсти", selected: false },
+                        { id: 2, value: false, name: "Чистка нижней челюсти", selected: true }],
+                    t1Color: 'black',
+                    t2Color: 'black',
+                    t3Color: 'white'
+                });
+            }
+
+            if (this.state.count === this.timeCodes[6]) {
+                clearInterval(this.timerId);
+                this.timerId = null;
+                this.props.navigation.navigate(this.params.next);
+            }
         }
 
-        if (this.state.count === 45) {
-            this.setState({
-                isLiked: [ { id: 1, value: true, name: "Чистка верхней челюсти", selected: false },
-                    { id: 2, value: false, name: "Чистка нижней челюсти", selected: true }]
-            });
-            this.setState({
-                t1Color: 'black',
-                t2Color: 'black',
-                t3Color: 'white'
-            });
-        }
-
-        if (this.state.count === 50) {
-            clearInterval(this.timerId);
-            this.timerId = null;
-            //TODO: navigate next screen
-        }
 
         this.setState({
             count: this.state.count + 1,
@@ -125,7 +123,9 @@ class StartContent extends Component<{ route: any }, any> {
             t2Color: 'black',
             t3Color: 'black'
         }
+
         this.params = props.route.params;
+        this.timeCodes = this.params.timeCodes;
         this.teeth = {
             uri: Image.resolveAssetSource(this.params.uri).uri,
             width: 225,
@@ -174,9 +174,9 @@ class StartContent extends Component<{ route: any }, any> {
             </View>
                 <Image source={this.teeth} style={{height: 300, marginTop: 15, marginBottom: 10, marginLeft: 75}} />
                 <View style={styles.counterView}>
-                    <Text style={styles.counter}>{this.state.count < 51 ? 50 - this.state.count : 0}</Text>
+                    <Text style={styles.counter}>{this.state.count < this.timeCodes[this.timeCodes.length - 1] + 1 ? this.timeCodes[this.timeCodes.length - 1] - this.state.count : 0}</Text>
                 </View>
-                <ProgressBar progress={ this.state.count / 50 } color={'#4194f2'} style={{justifyContent: 'space-between'}}/>
+                <ProgressBar progress={ this.state.count / this.timeCodes[this.timeCodes.length - 1] } color={'#4194f2'} style={{justifyContent: 'space-between'}}/>
                 <View style={{justifyContent: 'space-between', paddingLeft: 20, paddingRight: 20, paddingTop: 10}}>
                     <Text style={{textAlign: 'center', fontWeight: 'bold'}}>{this.params.header}</Text>
                     <Text style={this.getTextStyle(this.state.t1Color).text}>{this.params.text1}
@@ -208,13 +208,14 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: "#E6E6E6",
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        color: 'gray'
     },
     radioButtonIcon: {
         height: 14,
         width: 14,
         borderRadius: 7,
-        backgroundColor: "#98CFB6"
+        backgroundColor: "#ff0000"
     },
     radioButtonText: {
         fontSize: 16,
@@ -222,7 +223,8 @@ const styles = StyleSheet.create({
     },
     counter: {
         fontSize: 30,
-        textAlign: 'center'
+        textAlign: 'center',
+        color: '#2e732e'
     },
     counterView: {
         borderColor: 'black',
@@ -235,10 +237,5 @@ const styles = StyleSheet.create({
     }
 });
 
-interface StartProps {
-    onPress: any,
-    selected: any,
-    children: any
-}
 
 export default StartContent;

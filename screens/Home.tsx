@@ -15,7 +15,7 @@ const Home = (props: HomeProps) => {
                 <MyButton text={'Мои уведомления'} onPress={() => {props.navigation.navigate('notifications')}} />
             </View>
             <View style={{display: "flex", alignItems: 'stretch', justifyContent: 'space-between' }}>
-                <MyButton text={'Начать \nЧистку'} onPress={() => {props.navigation.navigate('startContainer')}} />
+                <MyButton text={'Начать \nЧистку'} onPress={() => {props.navigation.navigate('startContainer', {screen: 'algorithm1'})}} />
             </View>
             <View style={{ width: "90%", display: "flex", flexDirection: "row", alignItems: 'stretch', justifyContent: 'space-between' }}>
                 <MyButton text={'Мой \nПрофиль'} onPress={() => {props.navigation.navigate('profileContainer')}} />

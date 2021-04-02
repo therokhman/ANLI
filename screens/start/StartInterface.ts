@@ -6,4 +6,6 @@ export interface StartInterface {
     text1: string;
     text2: string;
     text3: string;
+    timeCodes: number[];
+    next: string;
 }
