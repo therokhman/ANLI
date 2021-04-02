@@ -10,10 +10,22 @@ import ProgramsContainer from "./screens/programs/ProgramsContainer";
 import ModesContainer from "./screens/modes/ModesContainer";
 import Notifications from "./screens/Notifications"
 import StartContainer from "./screens/start/StartContainer"
+import * as SQLite from 'expo-sqlite';
+
+// const db = SQLite.openDatabase('localDB.db');
 
 export default function App() {
     // useEffect(() => {
     //     SplashScreen.hide();
+    // });
+    const [items, setItems] = React.useState(null);
+    // db.transaction(tx => {
+    //     tx.executeSql(
+    //         `SELECT name FROM sqlite_master WHERE type='table' AND name='test'`,
+    //         [],
+    //         (_, { rows: { _array } }) => {setItems(_array); console.log(_array);},
+    //         (_, rerror) => console.error(rerror)
+    //     );
     // });
     return (
             <NavigationContainer>
