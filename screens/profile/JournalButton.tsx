@@ -17,13 +17,11 @@ class JournalButton extends React.Component<JournalButtonProps, {}> {
             width: props.width || 70,
             height: props.height || 37,
         }
-
-        console.log(this.img);
     }
 
     render() {
         // @ts-ignores
-        let {actions, settings} = JSON.parse(this.props.rootStore.modelData);
+        let {actions, settings} = this.props.rootStore.journal;
         let model = new JournalModel(actions, settings);
         let isEnabled = this.props.mode === JournalMode.DAY
             && model.currentValue(this.props.action, this.props.mode)
@@ -34,8 +32,7 @@ class JournalButton extends React.Component<JournalButtonProps, {}> {
                 style={styles.button}
                 onPress={() => {
                     if (isEnabled) {
-                        model.add(this.props.action);
-                        this.props.rootStore?.update(model.toString());
+                        this.props.rootStore?.addAction(this.props.action)
                     }
                 }}
             >
@@ -90,8 +87,8 @@ interface JournalButtonProps {
     action: ActionsEnum;
     onPress?: (event: GestureResponderEvent) => void;
     rootStore?: {
-        modelData: string;
-        update: (data: string) => void;
+        journal: string;
+        addAction: (data: string) => void;
     }
 }
 
