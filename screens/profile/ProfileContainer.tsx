@@ -3,6 +3,7 @@ import {createStackNavigator} from "@react-navigation/stack";
 import Profile from "./Profile";
 import Journal from "./Journal";
 import Notes from "./Notes";
+import CreateNote from "./CreateNote";
 
 const ProfileContainer = () => {
     return(
@@ -10,6 +11,7 @@ const ProfileContainer = () => {
                 <Stack.Screen name="profile" component={Profile} options={{ title: 'Мой профиль', headerBackTitleVisible: false, headerStyle: {backgroundColor: '#83aba4'}}} />
                 <Stack.Screen name="journal" component={Journal} options={{ title: 'Журнал чистки зубов', headerBackTitleVisible: false, headerStyle: {backgroundColor: '#83aba4'}}} />
                 <Stack.Screen name="notes" component={Notes} options={{ title: 'Заметки', headerBackTitleVisible: false, headerStyle: {backgroundColor: '#83aba4'}}} />
+                <Stack.Screen name="createnote" component={CreateNote} options={{ title: 'Новая заметка', headerBackTitleVisible: false, headerStyle: {backgroundColor: '#83aba4'}}} />
             </Stack.Navigator>
     )
 }
