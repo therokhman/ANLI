@@ -3,8 +3,10 @@ import {View, Alert, Platform} from "react-native";
 import MyButton from "../../MyButton";
 import { CheckBox } from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker'
+import {inject, observer} from "mobx-react";
 
-
+@inject('rootStore')
+@observer
 class CreateNote extends Component<any, any> {
     constructor(props: any) {
         super(props);
@@ -28,6 +30,19 @@ class CreateNote extends Component<any, any> {
         });
 
     };
+
+    safeNote = () => {
+       this.props.rootStore.addNote({
+           date: this.state.date.toISOString(),
+           blood: this.state.blood,
+           sensitivity: this.state.sensitivity,
+           caries: this.state.caries,
+           pigmentation: this.state.pigmentation,
+           tartar: this.state.tartar,
+       });
+       console.log('note saved');
+       this.props.navigation.navigate('notes');
+    }
 
     render() {
         return(<View style={{justifyContent: 'center', marginTop: 10}}>
@@ -67,16 +82,11 @@ class CreateNote extends Component<any, any> {
                     onPress={() => this.setState({tartar: !this.state.tartar})}
                 />
                 <View style={{width: '90%', marginLeft: 20, alignItems: 'stretch', justifyContent: 'space-between', marginTop: 35 }}>
-                    <MyButton text={'Добавить заметку'} onPress={() => {SafeNote()}} />
+                    <MyButton text={'Добавить заметку'} onPress={() => {this.safeNote()}} />
                 </View>
             </View>
         )
     }
-}
-
-const SafeNote = () => {
-    Alert.alert('Заметка создана')
-
 }
 
 export default CreateNote;

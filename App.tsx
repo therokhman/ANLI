@@ -19,6 +19,7 @@ import {Provider} from "mobx-react";
 import {JournalSettings} from "./screens/profile/JournalSettings";
 
 import { configure } from "mobx"
+import {string} from "mobx-state-tree/dist/types/primitives";
 
 configure({
     enforceActions: "never",
@@ -45,7 +46,7 @@ function getStoreDefinition(): any {
             blood: types.boolean,
             sensitivity: types.boolean,
             caries: types.boolean,
-            pigmentations: types.boolean,
+            pigmentation: types.boolean,
             tartar: types.boolean,
         }))
     })
@@ -59,18 +60,20 @@ function getStoreDefinition(): any {
                 self.journal = temp;
             },
             addMessage() {
-                db.addMessage((stamp: string) => {
-                    let temp = self.messages;
-                    temp.push(stamp);
-                    self.messages = temp;
-                })
+                let stamp = new Date().toISOString();
+                let temp = self.messages;
+                db.addMessage(stamp);
+                temp.push(stamp);
+                self.messages = temp;
             },
-            addNote(noteDetails: NoteProps) {
-                db.addNote(noteDetails,(stamp: string) => {
-                    let temp = self.messages;
-                    temp.push(stamp);
-                    self.messages = temp;
-                })
+            addNote(noteDetails: any) {
+                let stamp = new Date().toISOString();
+                let temp = self.notes;
+                db.addNote(noteDetails, stamp)
+                noteDetails.stamp = stamp;
+                // @ts-ignore
+                temp.push(noteDetails);
+                self.notes = temp;
             }
         }));
 }
@@ -117,10 +120,22 @@ db.actions((data: any)=> {
 });
 
 db.notes((data: any)=> {
+    let newNotes: any[] = [];
+    data.forEach((el: any) => {
+        newNotes.push({
+            date: el.date,
+            stamp: el.stamp,
+            blood: el.blood !== 0,
+            sensitivity: el.sensitivity !== 0,
+            caries: el.caries !== 0,
+            pigmentation: el.pigmentation !== 0,
+            tartar: el.tartar !== 0,
+        });
+    });
     applyPatch(rootStore, {
         op: 'replace',
         path: '/notes',
-        value: data
+        value: newNotes
     });
 });
 
@@ -134,6 +149,15 @@ db.messages((data: any)=> {
         path: '/messages',
         value: newMessages
     });
+    rootStore.messages.forEach((el: string) => {
+        if (latest === '' || latest < el) {
+            latest = el;
+        }
+    });
+    let latest = '';
+    if ((new Date().getTime() - new Date(latest).getTime()/ (60 * 60 * 24 * 1000)) >= 90 || rootStore.messages.length === 0) {
+        rootStore.addMessage();
+    }
 });
 
 export default function App() {

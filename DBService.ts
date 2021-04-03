@@ -6,7 +6,7 @@ export default class DBService {
     db: WebSQLDatabase | null = null;
     constructor() {
         // @ts-ignore
-        this.db = SQLite.openDatabase('appDBtest.db');
+        this.db = SQLite.openDatabase('appDBStoreProd.db');
         this.initTables();
     }
 
@@ -27,13 +27,12 @@ export default class DBService {
         });
     }
 
-    addMessage(callback: any): void {
+    addMessage(stamp: string): void {
         this.db?.transaction(tx => {
-            let stamp = new Date().toISOString();
             tx.executeSql(
                 "INSERT INTO messages (stamp) VALUES (?)",
                 [stamp],
-                (_, { rows: { _array } }) =>  callback(stamp),
+                (_, { rows: { _array } }) =>  {},
                 (_, error) => {
                     console.error(error);
                     return false;
@@ -42,13 +41,20 @@ export default class DBService {
         });
     }
 
-    addNote({date, blood, sensitivity, caries, pigmentation, tartar}: NoteProps, callback: any){
+    addNote(input: NoteProps, stamp: string){
         this.db?.transaction(tx => {
-            let stamp = new Date().toISOString();
+            let {date, blood, sensitivity, caries, pigmentation, tartar} = {
+                date: input.date,
+                blood: input.blood ? 1 : 0,
+                sensitivity: input.sensitivity ? 1 : 0,
+                caries: input.caries ? 1 : 0,
+                pigmentation: input.pigmentation ? 1 : 0,
+                tartar: input.tartar ? 1 : 0,
+            }
             tx.executeSql(
-                "INSERT INTO notes (stamp, dateVal, blood, sensitivity, caries, pigmentation, tartar) VALUES ( ?, ?, ?, ?, ?, ?, ?)",
+                "INSERT INTO notes (stamp, date, blood, sensitivity, caries, pigmentation, tartar) VALUES ( ?, ?, ?, ?, ?, ?, ?)",
                 [stamp, date, blood, sensitivity, caries, pigmentation, tartar],
-                (_, { rows: { _array } }) =>  callback(stamp),
+                (_, { rows: { _array } }) => {},
                 (_, error) => {
                     console.error(error);
                     return false;
@@ -61,7 +67,7 @@ export default class DBService {
     messages(callback: any): void {
         this.db?.transaction(tx => {
             tx.executeSql(
-                "INSERT INTO messages (stamp) VALUES (?)",
+                "SELECT stamp FROM messages",
                 [new Date().toISOString()],
                 (_, { rows: { _array } }) =>  callback(_array),
                 (_, error) => {
@@ -94,7 +100,7 @@ export default class DBService {
         this.db?.transaction(tx => {
             tx.executeSql(
                 `SELECT stamp, 
-                        dateVal, 
+                        date, 
                         blood, 
                         sensitivity, 
                         caries, 
@@ -127,7 +133,7 @@ export default class DBService {
         });
         this.db?.transaction(tx => {
             tx.executeSql(
-                "CREATE TABLE IF NOT EXISTS notes (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, stamp VARCHAR(24), dateVal VARCHAR(24), blood INTEGER, sensitivity INTEGER, caries INTEGER, pigmentation INTEGER, tartar INTEGER)",
+                "CREATE TABLE IF NOT EXISTS notes (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, stamp VARCHAR(24), date VARCHAR(24), blood INTEGER, sensitivity INTEGER, caries INTEGER, pigmentation INTEGER, tartar INTEGER)",
                 [],
             );
         });
