@@ -1,16 +1,18 @@
 import React from 'react';
 import {View,  Image} from 'react-native';
 import MyButton from "../MyButton";
+import Container from "./Container";
 
 const Home = (props: HomeProps) => {
     const img = {
         uri: Image.resolveAssetSource(require('../assets/jaw.png')).uri,
-        width: 225,
-        height: 225
+        width: 295,
+        height: 295
     }
     return (
+        <Container>
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-between', paddingTop: 30, paddingBottom: 40 }}>
-            <Image source={img} style={{height: 300, marginTop: -130, position: 'absolute', top: '50%'}} />
+            <Image source={img} style={{height: 380, marginTop: -175, position: 'absolute', top: '50%'}} />
             <View style={{ width: "90%", display: "flex", alignItems: 'stretch', justifyContent: 'space-between' }}>
                 <MyButton text={'Мои уведомления'} onPress={() => {props.navigation.navigate('notifications')}} />
             </View>
@@ -24,10 +26,9 @@ const Home = (props: HomeProps) => {
                 <MyButton text={'Спец \nпрограм-\nмы'} onPress={() => {props.navigation.navigate('programsContainer')}} />
             </View>
         </View>
+        </Container>
     );
 }
-
-
 
 interface HomeProps {
     navigation: any

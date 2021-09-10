@@ -128,8 +128,8 @@ class StartContent extends Component<{ route: any, navigation: any }, any> {
         this.timeCodes = this.params.timeCodes;
         this.teeth = {
             uri: Image.resolveAssetSource(this.params.uri).uri,
-            width: 225,
-            heigth: 225
+            width: 240,
+            heigth: 240
         };
         this.onRadioBtnClick = (function(item: any) {
             // @ts-ignores
@@ -172,12 +172,12 @@ class StartContent extends Component<{ route: any, navigation: any }, any> {
                     </RadioButton>
                 ))}
             </View>
-                <Image source={this.teeth} style={{height: 300, marginTop: 15, marginBottom: 10, marginLeft: 75}} />
+                <Image source={this.teeth} style={{height: 300, marginBottom: 10, marginLeft: 65}} />
                 <View style={styles.counterView}>
                     <Text style={styles.counter}>{this.state.count < this.timeCodes[this.timeCodes.length - 1] + 1 ? this.timeCodes[this.timeCodes.length - 1] - this.state.count : 0}</Text>
                 </View>
                 <ProgressBar progress={ this.state.count / this.timeCodes[this.timeCodes.length - 1] } color={'#4194f2'} style={{justifyContent: 'space-between'}}/>
-                <View style={{justifyContent: 'space-between', paddingLeft: 20, paddingRight: 20, paddingTop: 10}}>
+                <View style={{justifyContent: 'space-between', paddingLeft: 20, paddingRight: 20, paddingTop: 30}}>
                     <Text style={{textAlign: 'center', fontWeight: 'bold'}}>{this.params.header}</Text>
                     <Text style={this.getTextStyle(this.state.t1Color).text}>{this.params.text1}
                         <Text style={this.getTextStyle(this.state.t2Color).text}>{this.params.text2}</Text>
@@ -224,16 +224,16 @@ const styles = StyleSheet.create({
     counter: {
         fontSize: 30,
         textAlign: 'center',
-        color: '#2e732e'
+        color: '#265e1e'
     },
     counterView: {
         borderColor: 'black',
         borderWidth: 2,
         borderRadius: 5,
-        width: '10%',
-        marginLeft: 170,
-        marginBottom: 5,
-        backgroundColor: '#5bc7a5'
+        width: '30%',
+        marginLeft: 135,
+        marginBottom: 10,
+        backgroundColor: '#83aba4'
     }
 });
 

@@ -10,16 +10,12 @@ import ProgramsContainer from "./screens/programs/ProgramsContainer";
 import ModesContainer from "./screens/modes/ModesContainer";
 import Notifications from "./screens/Notifications"
 import StartContainer from "./screens/start/StartContainer"
-import * as SQLite from 'expo-sqlite';
 import DBService from "./DBService";
 import {ActionsEnum} from "./screens/profile/ActionsEnum";
-import {applyPatch, applySnapshot, IJsonPatch, types} from "mobx-state-tree";
+import {applyPatch, types} from "mobx-state-tree";
 import {JournalType} from "./screens/profile/JournalType";
 import {Provider} from "mobx-react";
-import {JournalSettings} from "./screens/profile/JournalSettings";
-
 import { configure } from "mobx"
-import {string} from "mobx-state-tree/dist/types/primitives";
 
 configure({
     enforceActions: "never",
@@ -161,9 +157,9 @@ db.messages((data: any)=> {
 });
 
 export default function App() {
-    // useEffect(() => {
-    //     SplashScreen.hide();
-    // });
+    useEffect(() => {
+        SplashScreen.hide();
+    });
     return (
         <Provider rootStore={rootStore}>
             <NavigationContainer>
